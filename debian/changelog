@@ -1,5 +1,162 @@
-template-repository (1.0-1) unstable; urgency=medium
+u-boot-menu (4.2.2) unstable; urgency=medium
 
-  * Initial release
+  [ Diederik de Haas ]
+  * u-boot-update: Make 'prompt' configurable (Closes: #1034071)
 
- -- Tsic404 <liuheng@deepin.org>  Sat, 28 Jan 2023 13:46:49 +0800
+ -- Vagrant Cascadian <vagrant@debian.org>  Sat, 08 Apr 2023 16:12:34 -0700
+
+u-boot-menu (4.2.1) unstable; urgency=medium
+
+  * Revert "add kalsrseed support" (Closes: #1025954)
+
+ -- Vagrant Cascadian <vagrant@debian.org>  Mon, 12 Dec 2022 13:26:47 -0800
+
+u-boot-menu (4.2.0) unstable; urgency=medium
+
+  [ Zhang Ning ]
+  * add kalsrseed support
+  * fix fdtoverlays path
+
+  [ Debian Janitor ]
+  * Apply multi-arch hints. + u-boot-menu: Add Multi-Arch: foreign.
+  * Use secure copyright file specification URI.
+
+  [ Arnaud Ferraris ]
+  * u-boot-update: allow using config fragments (Closes: #1012333)
+  * u-boot-update: honor /etc/kernel/cmdline (Closes: #1019743)
+
+  [ Vagrant Cascadian ]
+  * debian/control: Add Vagrant Cascadian to Uploaders.
+  * u-boot-menu.postinst: Add debhelper token.
+
+  [ Nicolas Frattaroli ]
+  * u-boot-update: use U_BOOT_FDT as absolute path if it is one
+    (Closes: #1025435)
+
+ -- Vagrant Cascadian <vagrant@debian.org>  Sun, 11 Dec 2022 15:05:25 -0800
+
+u-boot-menu (4.1.0) unstable; urgency=medium
+
+  * tighten quoting in shell code, thanks to shellcheck
+  * use POSIX shell (not bash)
+  * set shell option explicitly (not in shebang)
+  * support fdtoverlays command
+    with variables U_BOOT_FDT_OVERLAYS U_BOOT_FDT_OVERLAYS_DIR;
+    closes: bug#1013150, thanks to Alexandre Viard
+
+ -- Jonas Smedegaard <dr@jones.dk>  Fri, 17 Jun 2022 22:40:29 +0200
+
+u-boot-menu (4.0.5) unstable; urgency=medium
+
+  * support configurable initrd filename stem
+    with variable U_BOOT_INITRD,
+    and use unversioned initrd as fallback to versioned;
+    closes: bug#1006668, thanks to Undef and Arnaud Ferraris
+  * declare compliance with Debian Policy 4.6.1
+  * update header and credit in man page
+  * update copyright info: update coverage
+
+ -- Jonas Smedegaard <dr@jones.dk>  Sat, 04 Jun 2022 17:15:39 +0200
+
+u-boot-menu (4.0.4) unstable; urgency=medium
+
+  * taking over as maintainer;
+    thanks for your past contributions, Riku Voipio;
+    closes: bug#1001568, thanks to Mattia Rizzolo
+  * declare compliance with Debian Policy 4.6.0
+  * update copyright info:
+    + update coverage
+    + list Salsa (not Github) for upstream source and preferred contact URIs
+
+ -- Jonas Smedegaard <dr@jones.dk>  Tue, 14 Dec 2021 13:38:06 +0100
+
+u-boot-menu (4.0.3) unstable; urgency=medium
+
+  [ Dimitri John Ledkov ]
+  * u-boot-update: use PRETTY_NAME from os-release as menu label.
+
+  [ Jonas Smedegaard ]
+  * fix typo in code comment, thanks to Peter Geis
+  * document U_BOOT_FDT_DIR and U_BOOT_FDT in man page;
+    closes: bug#946971, thanks to Peter Geis and Andrei Popescu
+  * document resolving of menu items from U_BOOT_FDT_DIR and U_BOOT_FDT
+  * declare compliance with Debian Policy 4.5.1
+
+ -- Jonas Smedegaard <dr@jones.dk>  Thu, 19 Nov 2020 13:42:40 +0100
+
+u-boot-menu (4.0.2) unstable; urgency=medium
+
+  [ Vagrant Cascadian ]
+  * install example script for syncing .dtb files
+    for systems with a split /boot partition
+  * fix comment handling in in /etc/fstab
+
+  [ Jonas Smedegaard ]
+  * declare compliance with Debian Policy 4.5.0
+  * use debhelper compatibility level 13 (not 10);
+    build-depend on debhelper-compat (not debhelper)
+  * copyright: extend coverage
+
+ -- Jonas Smedegaard <dr@jones.dk>  Tue, 14 Jul 2020 18:42:17 +0200
+
+u-boot-menu (4.0.1) unstable; urgency=medium
+
+  * fix support U_BOOT_MENU_LABEL;
+    closes: bug#930395, thanks to Steev Klimaszewski
+  * fix skip commented-out fstab entry;
+    closes: bug#946950, thanks to Andrei POPESCU
+
+ -- Jonas Smedegaard <dr@jones.dk>  Wed, 18 Dec 2019 13:47:55 +0100
+
+u-boot-menu (4) unstable; urgency=medium
+
+  * Add git-buildpackage config:
+    + Sign tags.
+    + Use DEP-14 vendor-namespaced git branch naming.
+  * Fix avoid hardcoding vmlinuz as kernel stem.
+    Closes: Bug#928735. Thanks to Vagrant Cascadian.
+
+ -- Jonas Smedegaard <dr@jones.dk>  Fri, 31 May 2019 08:53:57 +0200
+
+u-boot-menu (3) unstable; urgency=medium
+
+  * Fix account for boot on separate partition
+    when resolving fdt or fdtdir.
+    Closes: Bug#868454. Thanks to Diego Roversi.
+  * Try resolve U_BOOT_FDT or flash-boot paths in /boot
+    if U_BOOT_FDT_DIR is set to its default.
+    Suggest flash-kernel, and mention its use in long desctiption.
+    Closes: Bug#926126. Thanks to Diego Roversi.
+  * Fix install /etc/default/u-boot,
+    with all options at default values and commented out.
+    Closes: Bug#926127. Thanks to Diego Roversi.
+  * Fix set U_BOOT_PARAMETERS to "ro quiet" (not empty) by default.
+    Closes: Bug#908590.
+  * Use linux cmdline argument "single" in recovery mode
+    (not systemd-specific "systemd.unit=rescue.target").
+    Closes: Bug#884748. Thanks to Adam Borowski.
+  * Add myself as uploader.
+  * Update Vcs-* fields: Maintenance moved to salsa.
+  * Declare compliance with Debian Policy 4.3.0.
+  * Set Rules-Requires-Root: no.
+  * Update copyright info: Extend coverage.
+
+ -- Jonas Smedegaard <dr@jones.dk>  Sun, 31 Mar 2019 22:54:03 +0200
+
+u-boot-menu (2) unstable; urgency=medium
+
+  [ Vagrant Cascadian ]
+  * Use linux-version to list and sort the available versions correctly.
+    closes: #865918
+
+  [ Riku Voipio ]
+  * update manpage
+  * Add linux-base depends since we now use linux-version script
+
+ -- Riku Voipio <riku.voipio@linaro.org>  Mon, 26 Jun 2017 08:54:16 +0300
+
+u-boot-menu (1) unstable; urgency=medium
+
+  * Initial release.
+
+ -- Riku Voipio <riku.voipio@linaro.org>  Fri, 27 Jan 2017 11:42:25 +0200
