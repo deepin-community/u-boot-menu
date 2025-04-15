@@ -4,7 +4,7 @@
 
 #U_BOOT_ALTERNATIVES="default recovery"
 #U_BOOT_DEFAULT="l0"
-#U_BOOT_PROMPT="0"
+#U_BOOT_PROMPT="1"
 #U_BOOT_ENTRIES="all"
 #U_BOOT_MENU_LABEL="Debian GNU/Linux"
 #U_BOOT_PARAMETERS="ro quiet"
@@ -14,4 +14,4 @@
 #U_BOOT_FDT_DIR="/usr/lib/linux-image-"
 #U_BOOT_FDT_OVERLAYS=""
 #U_BOOT_FDT_OVERLAYS_DIR="/boot/dtbo/"
-
+#U_BOOT_SYNC_DTBS="false"

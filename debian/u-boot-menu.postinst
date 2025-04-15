@@ -4,7 +4,16 @@ set -e
 
 if [ "$1" = "triggered" ]
 then
-	/usr/sbin/u-boot-update
+	u-boot-update
+fi
+
+if [ "$1" = "configure" ]
+then
+	# Create an initial extlinux.conf if directory not already present
+	if [ -z "$2" ] && [ ! -e "/boot/extlinux" ]
+	then
+		u-boot-update
+	fi
 fi
 
 #DEBHELPER#

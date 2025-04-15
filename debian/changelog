@@ -1,3 +1,46 @@
+u-boot-menu (4.2.4) unstable; urgency=medium
+
+  [ Johannes Schauer Marin Rodrigues ]
+  * etc/kernel/post{inst,rm}.d/zz-u-boot-menu: check whether u-boot-menu
+    is still installed before proceeding (Closes: #1061687)
+
+  [ Markus Burri ]
+  * Separate devicetree overlay directory for each kernel
+    (Closes: #1095811, #1036730)
+
+  [ Vagrant Cascadian ]
+  * Use /dtbs/ directory when using U_BOOT_SYNC_DTBS, to avoid breaking
+    installations where flash-kernel is installed. (Closes: #1091979)
+  * debian/control: Update Standards-Version to 4.7.2.
+  * u-boot-menu postinst: Do not call u-boot-update with a full path.
+  * read-config: Mark as executable.
+
+ -- Vagrant Cascadian <vagrant@debian.org>  Tue, 08 Apr 2025 15:33:04 -0700
+
+u-boot-menu (4.2.3) unstable; urgency=medium
+
+  [ Vagrant Cascadian ]
+  * Default to U_BOOT_PROMPT set to "1".
+
+  [ Arnaud Ferraris ]
+  * u-boot-update: split config file reading to a separate script
+  * read-config: make /boot partition check a function
+  * Allow automatically syncing DTBs when /boot is on a separate partition
+    (Closes: #1025956)
+
+  [ Johannes Schauer Marin Rodrigues ]
+  * debian/u-boot-menu.postinst: create extlinux.conf on initial
+    installation. (Closes: #1053814)
+
+  [ Vagrant Cascadian ]
+  * Mirror etc directory for kernel post*.d files.
+  * Add hook to call u-boot-update for kernel-install. Thanks to Manuel
+    Traut. (Closes: #1027899)
+  * Simplify installation of /etc/default/u-boot
+  * debian/control: Update Standards-Version to 4.6.2.
+
+ -- Vagrant Cascadian <vagrant@debian.org>  Wed, 17 Jan 2024 12:44:46 -0800
+
 u-boot-menu (4.2.2) unstable; urgency=medium
 
   [ Diederik de Haas ]

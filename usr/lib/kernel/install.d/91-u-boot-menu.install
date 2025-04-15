@@ -1,0 +1,12 @@
+#!/bin/sh
+
+set -e
+
+# FIXME support U_BOOT_SYNC_DTBS on "add" and "remove" events
+
+# Exit if u-boot-menu was removed (!= purged)
+if [ -x /usr/sbin/u-boot-update ]
+then
+       # Update extlinux configuration
+       u-boot-update
+fi

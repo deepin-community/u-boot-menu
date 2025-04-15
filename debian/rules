@@ -1,7 +1,3 @@
 #!/usr/bin/make -f
 %:
 	dh $@
-
-override_dh_installinit:
-	cp -f default debian/u-boot-menu.u-boot.default
-	dh_installinit --name=u-boot
