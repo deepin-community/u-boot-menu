@@ -1,0 +1,31 @@
+#!/bin/sh
+
+set -e
+
+test -e /usr/share/u-boot-menu/read-config || exit 0
+
+. /usr/share/u-boot-menu/read-config
+
+version="$1"
+srcdir="/usr/lib/linux-image-${version}"
+destdir="${_BOOT_PATH}${_BOOT_DIRECTORY}${U_BOOT_FDT_DIR}${version}"
+
+# Sync DTBs if /boot is on a different partition than /
+if has_separate_boot && [ "${U_BOOT_SYNC_DTBS}" = "true" ] && command -v rsync >/dev/null 2>&1
+then
+	if [ -d "${srcdir}" ]
+	then
+		echo "I: u-boot-menu: syncing ${srcdir} to ${destdir}"
+		mkdir -p "${destdir}"
+		rsync -a "${srcdir}/" "${destdir}/"
+	else
+		echo >&2 "W: u-boot-menu: ${srcdir} NOT PRESENT"
+	fi
+fi
+
+# Exit if u-boot-menu was removed (!= purged)
+if [ -x /usr/sbin/u-boot-update ]
+then
+	# Update extlinux configuration
+	u-boot-update
+fi
